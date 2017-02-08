@@ -1,7 +1,52 @@
 package cs3354.assignment2;
 
-/**
- * Created by alexandermaxwell on 2/7/17.
- */
-public class Toy {
+import java.io.Serializable;
+
+/*******************************************************************************
+ @author Alexander Maxwell
+ Date: 02/07/2017
+ @version 1.0
+ @since 1.0
+
+ ******************************************************************************/
+public class Toy extends Product implements Serializable{
+
+    // Define private member variables.
+    private double weight;     // Holds item's unique weight in ounces (oz).
+
+    /***************************************************************************
+     * CONSTRUCTORS
+     **************************************************************************/
+    /*
+      Default Constructor (Initialize to "0" or "").
+    */
+    public Toy() {
+        super();
+        weight = 0.0;
+    }
+
+    /*
+      Overloaded Constructor (Initialize to user specified values)
+      @param sku the item's unique SKU.
+      @param quantity the item's available quantity (>= 0).
+      @param price the item's price (> 0.00).
+      @param title the item's title.
+      @param weight the item's weight in ounces (oz).
+    */
+    public Toy(int sku, String title, double price, int quantity,
+               double weight) {
+        super(sku, title, price, quantity);
+        this.weight = weight;
+    }
+
+    /***************************************************************************
+     * PUBLIC MEMBER METHODS
+     **************************************************************************/
+    public void display() {
+        // Display's universal attributes in addition to
+        // Toy specific attributes.
+        super.display();
+        System.out.println("Weight: " + weight + " oz");
+
+    }
 }

@@ -1,7 +1,16 @@
 package cs3354.assignment2;
 
-/**
- * Created by alexandermaxwell on 2/7/17.
- */
+/*******************************************************************************
+@author Alexander Maxwell
+Date: 02/07/2017
+@version 1.0
+
+*******************************************************************************/
 public class Inventory {
+
+
+
+
+
+
 }
