@@ -35,6 +35,10 @@ public class Main {
         final String FILE_NAME = "inventoryRecord.txt";
         Inventory storeInventory = new Inventory();
 
+        // Create input scanner.
+        Scanner input = new Scanner(System.in);
+
+
         /*
             Create a new input file instance, a new input object instance,
             and attempt to read in an object from the file. If it fails simply
@@ -77,18 +81,13 @@ public class Main {
 
             switch(menuChoice){
                 case 1:
-
-                    // Create input scanner.
-                    Scanner Scanner = new Scanner(System.in);
-                    Scanner input = new Scanner(System.in);
-
                     // Read in category option from user.
                     System.out.println();
                     System.out.println("Select Product Type");
                     System.out.print("Enter M for movie, B for Book, or T " +
-                            "for Toy:");
+                            "for Toy: ");
                     char categoryChoice =
-                            Character.toUpperCase(Scanner.next().charAt(0));
+                            Character.toUpperCase(input.next().charAt(0));
                     switch (categoryChoice){
                         case 'M':
                             // Prompt for new movie from user.
@@ -124,11 +123,9 @@ public class Main {
                                     itemPrice, itemQuantity, itemUpc);
                             operationFlag = storeInventory.addItem(newMovie);
                             if(!operationFlag){
-                                System.out.println();
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Movie.");
                             } else {
-                                System.out.println();
                                 System.out.println("Movie with SKU "
                                         + itemSku + " was successfully added.");
                             }
@@ -163,6 +160,7 @@ public class Main {
                             System.out.println();
 
                             System.out.print("Enter Author: ");
+                            input.nextLine();  // Consume newline after SKU
                             itemAuthor = input.nextLine();
                             System.out.println();
 
@@ -172,11 +170,9 @@ public class Main {
                                     itemAuthor);
                             operationFlag = storeInventory.addItem(newBook);
                             if(!operationFlag){
-                                System.out.println();
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Book.");
                             } else {
-                                System.out.println();
                                 System.out.println("Book with SKU "
                                         + itemSku + " was successfully added.");
                             }
@@ -219,27 +215,51 @@ public class Main {
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Toy.");
                             } else {
-                                System.out.println();
                                 System.out.println("Toy with SKU "
                                         + itemSku + " was successfully added.");
                             }
+                            break;
                         default:
                             System.out.println();
                             System.out.println("Invalid Option! " +
                                     "Please choose M, B, or T.");
+
                     }
                     break;
 
                 case 2:
 
-                    // OPTION 2
-                    System.out.println("OPTION 2");
+                    // Prompt for SKU of item to remove from user.
+                    System.out.println();
+                    System.out.println("---------------------");
+                    System.out.println("--  Remove Product --");
+                    System.out.println("---------------------");
+                    System.out.println();
+
+                    System.out.print("Enter SKU: ");
+                    itemSku = input.nextInt();
+                    System.out.println();
+
+                    // Attempt to remove item from inventory.
+                    storeInventory.removeItem(itemSku);
+
                     break;
 
                 case 3:
 
-                    // OPTION 3
-                    System.out.println("OPTION 3");
+                    // Prompt for SKU of item to display from user.
+                    System.out.println();
+                    System.out.println("---------------------");
+                    System.out.println("-- Display Product --");
+                    System.out.println("---------------------");
+                    System.out.println();
+
+                    System.out.print("Enter SKU: ");
+                    itemSku = input.nextInt();
+                    System.out.println();
+
+                    // Display item from inventory.
+                    storeInventory.displayItem(itemSku);
                     break;
 
                 case 4:

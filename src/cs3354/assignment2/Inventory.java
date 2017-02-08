@@ -106,14 +106,12 @@ public class Inventory implements Serializable{
         Product currentProduct = searchInventory(givenSku);
 
         if(currentProduct == null){
-            System.out.println();
             System.out.println("ERROR! The SKU '" + givenSku +
                     "' could not be found in the inventory. Please select a " +
                     "different SKU and try again.");
             return false;
         } else {
             currentInventory.remove(currentProduct);
-            System.out.println();
             System.out.println( "The item with SKU '" + givenSku +
                     "' has been removed from the inventory.");
             return true;
@@ -132,7 +130,6 @@ public class Inventory implements Serializable{
         Product currentProduct = searchInventory(givenSku);
 
         if(currentProduct == null){
-            System.out.println();
             System.out.println("ERROR! The SKU '" + givenSku +
                     "' could not be found in the inventory. Please select a " +
                     "different SKU and try again.");

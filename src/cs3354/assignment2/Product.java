@@ -60,9 +60,13 @@ public class Product implements Serializable {
      */
     public void display() {
         System.out.println("SKU: " + sku);
+        System.out.println();
         System.out.println("Title: " + title);
-        System.out.println("Price: $" + formatPrice(price));
+        System.out.println();
+        System.out.println("Price: " + formatPrice(price));
+        System.out.println();
         System.out.println("Quantity: " + quantity);
+        System.out.println();
     }
 
     /*************************************

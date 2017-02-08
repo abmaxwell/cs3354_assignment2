@@ -54,6 +54,7 @@ public class Book extends Product implements Serializable {
         // Book specific attributes.
         super.display();
         System.out.println("ISBN: " + isbn);
+        System.out.println();
         System.out.println("Author: " + author);
     }
 }
