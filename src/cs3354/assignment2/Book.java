@@ -11,6 +11,10 @@ import java.io.Serializable;
  ******************************************************************************/
 public class Book extends Product implements Serializable {
 
+    /***************************************************************************
+     * VARIABLE DEFINITIONS
+     **************************************************************************/
+
     // Define private member variables.
     private int isbn;      // Holds item's unique ISBN.
     private String author; // Holds item's specific author.

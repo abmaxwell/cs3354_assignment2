@@ -11,6 +11,10 @@ import java.io.Serializable;
  ******************************************************************************/
 public class Movie extends Product implements Serializable {
 
+    /***************************************************************************
+     * VARIABLE DEFINITIONS
+     **************************************************************************/
+
     // Define private member variables.
     private int upc;    // Holds item's unique UPC.
 

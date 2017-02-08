@@ -20,6 +20,7 @@ public class Main {
 
         // Define Main class member variables.
         boolean loopMenu = true;
+        boolean operationFlag = true;
         int skuFind;
         int menuChoice;
         int itemSku;
@@ -61,7 +62,7 @@ public class Main {
             System.out.println();
             System.out.println(STORE_NAME);
             System.out.println();
-            System.out.println("1. Add Movie");
+            System.out.println("1. Add Product");
             System.out.println("2. Remove Product");
             System.out.println("3. Find Product by SKU");
             System.out.println("4. Display Current Inventory (Sorted by SKU)");
@@ -117,6 +118,20 @@ public class Main {
                             System.out.print("Enter UPC: ");
                             itemUpc = input.nextInt();
                             System.out.println();
+
+                            // Add new movie to inventory.
+                            Movie newMovie = new Movie(itemSku, itemTitle,
+                                    itemPrice, itemQuantity, itemUpc);
+                            operationFlag = storeInventory.addItem(newMovie);
+                            if(!operationFlag){
+                                System.out.println();
+                                System.out.println("ERROR! Unknown error " +
+                                        "occurred adding Movie.");
+                            } else {
+                                System.out.println();
+                                System.out.println("Movie with SKU "
+                                        + itemSku + " was successfully added.");
+                            }
                             break;
                         case 'B':
                             // Prompt for new book from user.
@@ -150,6 +165,21 @@ public class Main {
                             System.out.print("Enter Author: ");
                             itemAuthor = input.nextLine();
                             System.out.println();
+
+                            // Add new book to inventory.
+                            Book newBook = new Book(itemSku, itemTitle,
+                                    itemPrice, itemQuantity, itemIsbn,
+                                    itemAuthor);
+                            operationFlag = storeInventory.addItem(newBook);
+                            if(!operationFlag){
+                                System.out.println();
+                                System.out.println("ERROR! Unknown error " +
+                                        "occurred adding Book.");
+                            } else {
+                                System.out.println();
+                                System.out.println("Book with SKU "
+                                        + itemSku + " was successfully added.");
+                            }
                             break;
                         case 'T':
                             // Prompt for new toy from user.
@@ -179,7 +209,20 @@ public class Main {
                             System.out.print("Enter Weight (in ounces): ");
                             itemWeight = input.nextDouble();
                             System.out.println();
-                            break;
+
+                            // Add new toy to inventory.
+                            Toy newToy = new Toy(itemSku, itemTitle,
+                                    itemPrice, itemQuantity, itemWeight);
+                            operationFlag = storeInventory.addItem(newToy);
+                            if(!operationFlag){
+                                System.out.println();
+                                System.out.println("ERROR! Unknown error " +
+                                        "occurred adding Toy.");
+                            } else {
+                                System.out.println();
+                                System.out.println("Toy with SKU "
+                                        + itemSku + " was successfully added.");
+                            }
                         default:
                             System.out.println();
                             System.out.println("Invalid Option! " +

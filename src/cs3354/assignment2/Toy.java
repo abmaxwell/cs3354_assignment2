@@ -11,6 +11,10 @@ import java.io.Serializable;
  ******************************************************************************/
 public class Toy extends Product implements Serializable{
 
+    /***************************************************************************
+     * VARIABLE DEFINITIONS
+     **************************************************************************/
+
     // Define private member variables.
     private double weight;     // Holds item's unique weight in ounces (oz).
 

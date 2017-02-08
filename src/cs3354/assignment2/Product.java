@@ -13,6 +13,10 @@ import java.util.Locale;
  ******************************************************************************/
 public class Product implements Serializable {
 
+    /***************************************************************************
+     * VARIABLE DEFINITIONS
+     **************************************************************************/
+
     // Define private member variables.
     private int sku;        // Holds item's unique SKU.
     private int quantity;   // Holds item's available quantity (>= 0).
