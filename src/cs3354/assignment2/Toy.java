@@ -53,4 +53,16 @@ public class Toy extends Product implements Serializable{
         System.out.println("Weight: " + weight + " oz");
 
     }
+    /*
+        @return Returns the toy's unique weight in total ounces.
+    */
+    public double getWeight() {
+        return weight;
+    }
+    /*
+      @return Returns the item's category type as "Toy".
+  */
+    public String getType() {
+        return "Toy";
+    }
 }

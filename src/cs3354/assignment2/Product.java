@@ -22,6 +22,7 @@ public class Product implements Serializable {
     private int quantity;   // Holds item's available quantity (>= 0).
     private double price;   // Holds item's price (> $0.00).
     private String title;   // Holds item's title.
+    private String type = "Not Defined";    // Holds item's category type.
 
 
     /***************************************************************************
@@ -73,34 +74,40 @@ public class Product implements Serializable {
      * Getters
     **************************************/
     /*
-        @return the item's unique SKU.
+        @return Returns the item's unique SKU.
     */
     public int getSku() {
         return sku;
     }
     /*
-        @return the item's title.
+        @return Returns the item's title.
     */
     public String getTitle() {
         return title;
     }
     /*
-        @return the item's price (> 0.00).
+        @return Returns the item's price (> 0.00).
     */
     public double getPrice() {
         return price;
     }
     /*
-        @return the item's price formatted to ($0.00).
+        @return Returns the item's price formatted to ($0.00).
     */
     public String getFormattedPrice(){
         return formatPrice(price);
     }
     /*
-        @return the item's available quantity (>= 0).
+        @return Returns the item's available quantity (>= 0).
     */
     public int getQuantity() {
         return quantity;
+    }
+    /*
+        @return Returns the item's category type (Movie, Book, or Toy).
+    */
+    public String getType() {
+        return type;
     }
 
     /***************************************************************************

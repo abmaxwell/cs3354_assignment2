@@ -44,22 +44,25 @@ public class Main {
             and attempt to read in an object from the file. If it fails simply
             create a new "Inventory" object to store items to.
         */
-        /**
+
         try {
             FileInputStream fileIN = new FileInputStream(FILE_NAME);
             ObjectInputStream objectIN= new ObjectInputStream(fileIN);
             storeInventory = (Inventory) objectIN.readObject();
             fileIN.close();
+            System.out.println("Loading inventory from file '"
+                    + FILE_NAME + "'..." );
         } catch (FileNotFoundException e) {
-            // Do nothing.
+            System.out.println("ERROR! There is no file named '"
+                    + FILE_NAME + "'.");
         } catch (IOException e) {
-            System.out.println("ERROR! There is a problem with file input from"
-                    + FILE_NAME + ".");
+            System.out.println("ERROR! There is a problem with file input " +
+                    "from '"+ FILE_NAME + "'.");
         } catch (ClassNotFoundException e) {
-            System.out.println("ERROR! Class not found on input from file named"
-                    + FILE_NAME + ".");
+            System.out.println("ERROR! Class not found on input from file " +
+                    "named '" + FILE_NAME + "'.");
         }
-         **/
+
 
         // Loop menu with inventory control options.
         do {
@@ -72,7 +75,7 @@ public class Main {
             System.out.println("4. Display Current Inventory (Sorted by SKU)");
             System.out.println("5. Display Current Inventory " +
                     "(Sorted by Title)");
-            System.out.println("6. Process ");
+            System.out.println("6. Process Sale");
             System.out.println("7. Quit Program");
             System.out.println();
             System.out.print("Enter choice: ");
@@ -123,11 +126,13 @@ public class Main {
                                     itemPrice, itemQuantity, itemUpc);
                             operationFlag = storeInventory.addItem(newMovie);
                             if(!operationFlag){
+                                /*
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Movie.");
+                                        */
                             } else {
-                                System.out.println("Movie with SKU "
-                                        + itemSku + " was successfully added.");
+                                System.out.println("Movie with SKU '"
+                                        + itemSku + "' was successfully added.");
                             }
                             break;
                         case 'B':
@@ -170,11 +175,13 @@ public class Main {
                                     itemAuthor);
                             operationFlag = storeInventory.addItem(newBook);
                             if(!operationFlag){
+                                /*
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Book.");
+                                        */
                             } else {
-                                System.out.println("Book with SKU "
-                                        + itemSku + " was successfully added.");
+                                System.out.println("Book with SKU '"
+                                        + itemSku + "' was successfully added.");
                             }
                             break;
                         case 'T':
@@ -211,12 +218,13 @@ public class Main {
                                     itemPrice, itemQuantity, itemWeight);
                             operationFlag = storeInventory.addItem(newToy);
                             if(!operationFlag){
-                                System.out.println();
+                                /*
                                 System.out.println("ERROR! Unknown error " +
                                         "occurred adding Toy.");
+                                        */
                             } else {
-                                System.out.println("Toy with SKU "
-                                        + itemSku + " was successfully added.");
+                                System.out.println("Toy with SKU '"
+                                        + itemSku + "' was successfully added.");
                             }
                             break;
                         default:
@@ -264,14 +272,14 @@ public class Main {
 
                 case 4:
 
-                    // OPTION 4
-                    System.out.println("OPTION 4");
+                    System.out.println();
+                    storeInventory.displayInventoryBySku();
                     break;
 
                 case 5:
 
-                    // OPTION 5
-                    System.out.println("OPTION 5");
+                    System.out.println();
+                    storeInventory.displayInventoryByTitle();
                     break;
 
                 case 6:
@@ -286,7 +294,7 @@ public class Main {
                     System.out.println("Thanks for the inventory! Have a " +
                             "great day!");
                     loopMenu = false;
-
+                    break;
                 default:
 
                     System.out.println();
@@ -301,7 +309,7 @@ public class Main {
             and attempt to write an object to the file. If it fails simply
             create a new "Inventory" object to store items to.
         */
-        /**
+
         try {
             FileOutputStream fileOUT = new FileOutputStream(FILE_NAME);
             ObjectOutputStream objectOUT = new ObjectOutputStream(fileOUT);
@@ -311,6 +319,5 @@ public class Main {
             System.out.println("ERROR! There is a problem writing to "
                     + FILE_NAME + ".");;
         }
-        **/
     }
 }

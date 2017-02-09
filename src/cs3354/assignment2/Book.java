@@ -57,4 +57,22 @@ public class Book extends Product implements Serializable {
         System.out.println();
         System.out.println("Author: " + author);
     }
+    /*
+        @return Returns the book's unique ISBN.
+    */
+    public int getIsbn() {
+        return isbn;
+    }
+    /*
+        @return Returns the book's author.
+    */
+    public String getAuthor() {
+        return author;
+    }
+    /*
+      @return Returns the item's category type as "Book".
+  */
+    public String getType() {
+        return "Book";
+    }
 }

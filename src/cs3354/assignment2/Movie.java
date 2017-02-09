@@ -51,4 +51,18 @@ public class Movie extends Product implements Serializable {
         super.display();
         System.out.println("UPC: " + upc);
     }
+    /*
+        @return Returns the movie's unique UPC.
+    */
+    public int getUpc() {
+        return upc;
+    }
+
+    /*
+       @return Returns the item's category type as "Movie".
+   */
+    public String getType() {
+        return "Movie";
+    }
 }
+

@@ -1,7 +1,8 @@
 package cs3354.assignment2;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.*;
+import java.text.NumberFormat;
 
 /*******************************************************************************
 @author Alexander Maxwell
@@ -76,7 +77,7 @@ public class Inventory implements Serializable{
             System.out.println("ERROR! Price cannot be $0.00. Minimum price" +
                         "$0.01");
             return false;
-        } else if (decimalPortion.length() > 2 || decimalPortion.length() < 2){
+        } else if (decimalPortion.length() > 2 || decimalPortion.length() < 1){
             System.out.println();
             System.out.println("ERROR! Invalid price. Price must be formatted "
                         + "in the form #.##");
@@ -137,6 +138,79 @@ public class Inventory implements Serializable{
             currentProduct.display(); // Call type specific Product.display()
         }
     }
+
+    /*
+    Method: displayInventoryBySku
+    Type: void
+    Description: Displays the current inventory sorted by SKU.
+    Param: N/A
+    Return: N/A
+    */
+    public void displayInventoryBySku(){
+
+        // Method specific variable definitions.
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter =
+                NumberFormat.getCurrencyInstance(locale);
+
+        if (currentInventory.size() <= 0){
+            System.out.println("ERROR! There's no inventory to display.");
+        } else {
+            // Create a new comparator and sort inventory by SKU.
+            Comparator<Product> comp = new SortBySku();
+            Collections.sort(currentInventory,comp);
+
+            System.out.format("%1$-15s %2$-15s %3$-15s %4$-15s %5$-15s %n",
+                    "Category", "SKU", "Quantity", "Price", "Title");
+            System.out.println();
+            for (Product currentProduct : currentInventory){
+
+                System.out.format("%1$-15s %2$-15s %3$-15s %4$-15s %5$-15s %n",
+                        currentProduct.getType(),currentProduct.getSku(),
+                        currentProduct.getQuantity(),
+                        currencyFormatter.format(currentProduct.getPrice()),
+                        currentProduct.getTitle());
+            }
+        }
+
+    } // End displayInventoryBySku
+
+    /*
+    Method: displayInventoryByTitle
+    Type: void
+    Description: Displays the current inventory sorted by SKU.
+    Param: N/A
+    Return: N/A
+    */
+    public void displayInventoryByTitle(){
+
+        // Method specific variable definitions.
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter =
+                NumberFormat.getCurrencyInstance(locale);
+
+        if (currentInventory.size() <= 0){
+            System.out.println("ERROR! There's no inventory to display.");
+        } else {
+            // Create a new comparator and sort inventory by SKU.
+            Comparator<Product> comp = new SortByTitle();
+            Collections.sort(currentInventory,comp);
+
+            System.out.format("%1$-15s %2$-15s %3$-15s %4$-15s %5$-15s %n",
+                    "Category", "SKU", "Quantity", "Price", "Title");
+            System.out.println();
+            for (Product currentProduct : currentInventory){
+
+                System.out.format("%1$-15s %2$-15s %3$-15s %4$-15s %5$-15s %n",
+                        currentProduct.getType(),currentProduct.getSku(),
+                        currentProduct.getQuantity(),
+                        currencyFormatter.format(currentProduct.getPrice()),
+                        currentProduct.getTitle());
+            }
+        }
+
+    } // End displayInventoryBySku
+
     /***************************************************************************
     * PRIVATE MEMBER METHODS
     ***************************************************************************/
