@@ -7,7 +7,12 @@ import java.io.Serializable;
  Date: 02/07/2017
  @version 1.0
  @since 1.0
-
+ <p> The Book class is a subclass of the superclass Product. It extends the
+ available fields representing a Product by including an ISBN and Author.
+ It also defines it's own private member variables Base_Ship_Rate and
+ Commission_Rate.
+ </p>
+ @see Product
  ******************************************************************************/
 public class Book extends Product implements Serializable {
 

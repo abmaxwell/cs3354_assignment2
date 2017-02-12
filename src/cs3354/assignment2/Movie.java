@@ -7,7 +7,11 @@ import java.io.Serializable;
  Date: 02/07/2017
  @version 1.0
  @since 1.0
-
+ <p> The Movie class is a subclass of the superclass Product. It extends the
+ available fields representing a Product by including a UPC. It also defines
+ it's own private member variables Base_Ship_Rate and Commission_Rate.
+ </p>
+ @see Product
  ******************************************************************************/
 public class Movie extends Product implements Serializable {
 

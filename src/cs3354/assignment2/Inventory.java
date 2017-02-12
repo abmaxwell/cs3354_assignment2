@@ -8,7 +8,13 @@ import java.text.NumberFormat;
 @author Alexander Maxwell
 Date: 02/07/2017
 @version 1.0
-
+<p> The Inventory class defines an object of type Arraylist which is of type
+Product and serves as the the primary storage interface for the inventory. It
+provides the public methods: addItem, removeItem, displayItem,
+displayInventoryBySku, displayInventoryByTitle, processSale, and private method
+searchInventory. These methods are discussed in detail below.
+</p>
+ @see ArrayList
 *******************************************************************************/
 public class Inventory implements Serializable{
 
@@ -37,8 +43,8 @@ public class Inventory implements Serializable{
         Param: @param ItemDVD class object, which is a unique DVD to add to
         inventory.
         Return: @return Adds passed object to Inventory object's array list.
-        Returns <CODE>True</CODE> if the item was added successfully, and returns
-        <CODE>False</CODE> if the item was added unsuccessfully.
+        Returns <CODE>True</CODE> if the item was added successfully, and
+        returns <CODE>False</CODE> if the item was added unsuccessfully.
      */
 
     public boolean addItem (Product newProduct) {
@@ -52,7 +58,6 @@ public class Inventory implements Serializable{
         Product currentProduct = searchInventory(newProduct.getSku());
 
         if (currentProduct != null) {
-            System.out.println();
             System.out.println("ERROR! The SKU '" + newProduct.getSku() +
                     "' is already in use. Please select a different " +
                         "SKU and try again.");
@@ -93,14 +98,14 @@ public class Inventory implements Serializable{
     } // End addItem
 
     /*
-   Method: removeItem
-   Type: Boolean
-   Description: Removes a Product object from the current inventory if it
-   exists in the inventory otherwise it outputs an error.
-   Param: @param (int) Unique SKU of item to be removed.
-   Return: @return Returns <CODE>True</CODE> if an item was successfully
-   removed, and returns <CODE>False</CODE> if the item was not found in the
-   inventory.
+    Method: removeItem
+    Type: Boolean
+    Description: Removes a Product object from the current inventory if it
+    exists in the inventory otherwise it outputs an error.
+    Param: @param (int) Unique SKU of item to be removed.
+    Return: @return Returns <CODE>True</CODE> if an item was successfully
+    removed, and returns <CODE>False</CODE> if the item was not found in the
+    inventory.
     */
     public boolean removeItem (int givenSku){
 
@@ -212,7 +217,7 @@ public class Inventory implements Serializable{
     } // End displayInventoryBySku
 
     /*
-    Method: processesSale
+    Method: processSale
     Type: boolean
     Description: Processes the sale of an item in the inventory. User must
     provide the SKU of the item, quantity of item to sell
@@ -251,7 +256,7 @@ public class Inventory implements Serializable{
                 System.out.println("ERROR! The SKU '" + givenSku +
                         "' does not have enough inventory to process sale.");
                 System.out.println("Given quantity was " + givenQuantity +
-                        ". Available quantity is " +
+                        ". Available quantity of SKU #" + givenSku + " is " +
                         currentProduct.getQuantity() + ".");
                 return false;
             } else{
@@ -278,9 +283,11 @@ public class Inventory implements Serializable{
                 // DEBUG
                 System.out.println("DEBUG: TotalPrice: " + totalPrice);
                 // DEBUG
-                System.out.println("DEBUG: TotalShippingCredit: " + totalShippingCredit);
+                System.out.println("DEBUG: TotalShippingCredit: " +
+                totalShippingCredit);
                 // DEBUG
-                System.out.println("DEBUG: TotalCommission: " + totalCommission);
+                System.out.println("DEBUG: TotalCommission: " +
+                totalCommission);
                 // DEBUG
                 System.out.println("DEBUG: TotalProfit: " + totalProfit);
 

@@ -9,7 +9,16 @@ import java.util.Locale;
  Date: 02/07/2017
  @version 1.0
  @since 1.0
-
+<p> The Product class defines a object representing an inventory item. The
+ Product class is the super-class for the sub classes Movie, Book, and Toy. It
+ defines the private member variables SKU, Quantity, Price, Title, Type,
+ Base_Ship_Credit, and Commission_Rate. It provides public methods to display
+ a product, calculate totalPrice, totalCommission, totalShippingCredit, and
+ totalProfit which are accessors for the Inventory method "processSale". It also
+ provides public getters and a private method to format a products priced based
+ country.
+ </p>
+ @see Inventory
  ******************************************************************************/
 public class Product implements Serializable {
 

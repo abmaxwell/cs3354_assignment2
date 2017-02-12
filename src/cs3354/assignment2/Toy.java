@@ -3,14 +3,16 @@ package cs3354.assignment2;
 import java.io.Serializable;
 import java.lang.Math;
 
-
-
 /*******************************************************************************
  @author Alexander Maxwell
  Date: 02/07/2017
  @version 1.0
  @since 1.0
-
+ <p> The Toy class is a subclass of the superclass Product. It extends the
+ available fields representing a Product by including an item's weight. It also
+ defines it's own private member variables Base_Ship_Rate and Commission_Rate.
+ </p>
+ @see Product
  ******************************************************************************/
 public class Toy extends Product implements Serializable{
 
@@ -61,14 +63,14 @@ public class Toy extends Product implements Serializable{
 
     }
     /*
-   Method: totalShippingCredit
-   Type: double
-   Description: Calculates the total shipping credit given to seller
-   from processing the sale of an item.
-   (total shipping credit = item specific shipping credit x quantity sold)
-   Param: @param The (int) given quantity.
-   Return: @return Returns the (double) total shipping credit of processing a
-   sale based on quality sold and weight of toy.
+    Method: totalShippingCredit
+    Type: double
+    Description: Calculates the total shipping credit given to seller
+    from processing the sale of an item.
+    (total shipping credit = item specific shipping credit x quantity sold)
+    Param: @param The (int) given quantity.
+    Return: @return Returns the (double) total shipping credit of processing a
+    sale based on quality sold and weight of toy.
     */
     public double totalShippingCredit(int givenQuantity){
 
@@ -95,7 +97,7 @@ public class Toy extends Product implements Serializable{
     }
     /*
       @return Returns the item's category type as "Toy".
-  */
+    */
     public String getType() {
         return "Toy";
     }
