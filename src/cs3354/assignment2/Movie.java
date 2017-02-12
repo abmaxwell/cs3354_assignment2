@@ -17,6 +17,8 @@ public class Movie extends Product implements Serializable {
 
     // Define private member variables.
     private int upc;    // Holds item's unique UPC.
+    private double BASE_SHIP_CREDIT = 2.98; // Holds unique shipping credit.
+    private double COMMISSION_RATE = 0.12; // Holds unique commission %.
 
     /***************************************************************************
      * CONSTRUCTORS
@@ -51,6 +53,10 @@ public class Movie extends Product implements Serializable {
         super.display();
         System.out.println("UPC: " + upc);
     }
+
+    /*************************************
+     * Getters
+     **************************************/
     /*
         @return Returns the movie's unique UPC.
     */
@@ -58,6 +64,18 @@ public class Movie extends Product implements Serializable {
         return upc;
     }
 
+    /*
+        @return Returns the unique base shipping credit.
+    */
+    public double getBaseShipCredit(){
+        return BASE_SHIP_CREDIT;
+    }
+    /*
+        @return Returns the unique commission rate.
+    */
+    public double getCommissionRate(){
+        return COMMISSION_RATE;
+    }
     /*
        @return Returns the item's category type as "Movie".
    */

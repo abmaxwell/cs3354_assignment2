@@ -21,6 +21,8 @@ public class Product implements Serializable {
     private int sku;        // Holds item's unique SKU.
     private int quantity;   // Holds item's available quantity (>= 0).
     private double price;   // Holds item's price (> $0.00).
+    private double BASE_SHIP_CREDIT = 0.00; // Null value to denote default.
+    private double COMMISSION_RATE = 0.00; // Null value to denote default.
     private String title;   // Holds item's title.
     private String type = "Not Defined";    // Holds item's category type.
 
@@ -62,12 +64,65 @@ public class Product implements Serializable {
     public void display() {
         System.out.println("SKU: " + sku);
         System.out.println();
-        System.out.println("Title: " + title);
+        System.out.println("Quantity: " + quantity);
         System.out.println();
         System.out.println("Price: " + formatPrice(price));
         System.out.println();
-        System.out.println("Quantity: " + quantity);
+        System.out.println("Title: " + title);
         System.out.println();
+    }
+
+    /*
+    Method: totalPrice
+    Type: double
+    Description: Calculates the total price from processing the sale of an item.
+    (total price = product price x quantity sold)
+    Param: @param The (int) given quantity.
+    Return: @return Returns the (double) total price of processing a sale based
+    on quality sold.
+     */
+    public double totalPrice(int givenQuantity){
+        return (price * givenQuantity);
+    }
+    /*
+    Method: totalShippingCredit
+    Type: double
+    Description: Calculates the total shipping credit given to seller
+    from processing the sale of an item.
+    (total shipping credit = item specific shipping credit x quantity sold)
+    Param: @param The (int) given quantity.
+    Return: @return Returns the (double) total shipping credit of processing a
+    sale based on quality sold.
+     */
+    public double totalShippingCredit(int givenQuantity){
+        return (getBaseShipCredit() * givenQuantity);
+    }
+    /*
+    Method: totalCommission
+    Type: double
+    Description: Calculates the total commission from processing the sale of
+    an item.(commission = [price * COMMISSION] * given quantity)
+    Param: @param The (int) given quantity.
+    Return: @return Returns the (double) total commission of processing a sale
+    based on quality sold.
+     */
+    public double totalCommission(int givenQuantity){
+        return (((price * getCommissionRate()) * givenQuantity));
+    }
+    /*
+    Method: totalProfit
+    Type: double
+    Description: Calculates the total profit from processing the sale of
+    an item.
+    (profit = [total price + total shipping credit] - [total commission +
+    shipping cost])
+    Param: N/A
+    Return: @return Returns the (double) total profit of processing a sale based
+    on quality sold.
+     */
+    public double totalProfit(int givenQuantity, double givenShippingCost){
+       return ((totalPrice(givenQuantity) + totalShippingCredit(givenQuantity))
+               - (totalCommission(givenQuantity) + givenShippingCost));
     }
 
     /*************************************
@@ -108,6 +163,28 @@ public class Product implements Serializable {
     */
     public String getType() {
         return type;
+    }
+
+    /*
+        @return Returns the unique base shipping credit.
+    */
+    public double getBaseShipCredit(){
+        return BASE_SHIP_CREDIT;
+    }
+    /*
+        @return Returns the unique commission rate.
+    */
+    public double getCommissionRate(){
+        return COMMISSION_RATE;
+    }
+    /*************************************
+     * Setters
+     **************************************/
+    /*
+        @param Set's the item's available quantity (>= 0).
+    */
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
     /***************************************************************************

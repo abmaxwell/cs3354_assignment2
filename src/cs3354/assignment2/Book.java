@@ -18,6 +18,8 @@ public class Book extends Product implements Serializable {
     // Define private member variables.
     private int isbn;      // Holds item's unique ISBN.
     private String author; // Holds item's specific author.
+    private double BASE_SHIP_CREDIT = 3.99; // Holds unique shipping credit.
+    private double COMMISSION_RATE = 0.15; // Holds unique commission %.
 
     /***************************************************************************
      * CONSTRUCTORS
@@ -57,6 +59,9 @@ public class Book extends Product implements Serializable {
         System.out.println();
         System.out.println("Author: " + author);
     }
+    /*************************************
+     * Getters
+     **************************************/
     /*
         @return Returns the book's unique ISBN.
     */
@@ -74,5 +79,17 @@ public class Book extends Product implements Serializable {
   */
     public String getType() {
         return "Book";
+    }
+    /*
+        @return Returns the unique base shipping credit.
+    */
+    public double getBaseShipCredit(){
+        return BASE_SHIP_CREDIT;
+    }
+    /*
+        @return Returns the unique commission rate.
+    */
+    public double getCommissionRate(){
+        return COMMISSION_RATE;
     }
 }

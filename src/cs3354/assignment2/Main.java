@@ -75,7 +75,7 @@ public class Main {
             System.out.println("4. Display Current Inventory (Sorted by SKU)");
             System.out.println("5. Display Current Inventory " +
                     "(Sorted by Title)");
-            System.out.println("6. Process Sale");
+            System.out.println("6. Process A Sale");
             System.out.println("7. Quit Program");
             System.out.println();
             System.out.print("Enter choice: ");
@@ -95,9 +95,9 @@ public class Main {
                         case 'M':
                             // Prompt for new movie from user.
                             System.out.println();
-                            System.out.println("---------------------");
-                            System.out.println("-- Add A New Movie --");
-                            System.out.println("---------------------");
+                            System.out.println("-----------------------");
+                            System.out.println("--  Add A New Movie  --");
+                            System.out.println("-----------------------");
                             System.out.println();
 
                             System.out.print("Enter SKU: ");
@@ -125,22 +125,18 @@ public class Main {
                             Movie newMovie = new Movie(itemSku, itemTitle,
                                     itemPrice, itemQuantity, itemUpc);
                             operationFlag = storeInventory.addItem(newMovie);
-                            if(!operationFlag){
-                                /*
-                                System.out.println("ERROR! Unknown error " +
-                                        "occurred adding Movie.");
-                                        */
-                            } else {
-                                System.out.println("Movie with SKU '"
-                                        + itemSku + "' was successfully added.");
+                            if(operationFlag){
+                                System.out.println("The movie '" + itemTitle +
+                                        "' with SKU #" + itemSku + " was " +
+                                        "successfully added.");
                             }
                             break;
                         case 'B':
                             // Prompt for new book from user.
                             System.out.println();
-                            System.out.println("---------------------");
-                            System.out.println("--  Add A New Book --");
-                            System.out.println("---------------------");
+                            System.out.println("----------------------");
+                            System.out.println("--  Add A New Book  --");
+                            System.out.println("----------------------");
                             System.out.println();
 
                             System.out.print("Enter SKU: ");
@@ -174,14 +170,10 @@ public class Main {
                                     itemPrice, itemQuantity, itemIsbn,
                                     itemAuthor);
                             operationFlag = storeInventory.addItem(newBook);
-                            if(!operationFlag){
-                                /*
-                                System.out.println("ERROR! Unknown error " +
-                                        "occurred adding Book.");
-                                        */
-                            } else {
-                                System.out.println("Book with SKU '"
-                                        + itemSku + "' was successfully added.");
+                            if(operationFlag){
+                                System.out.println("The book '" + itemTitle +"'" +
+                                        " with SKU #" + itemSku + " was " +
+                                        "successfully added.");
                             }
                             break;
                         case 'T':
@@ -217,14 +209,10 @@ public class Main {
                             Toy newToy = new Toy(itemSku, itemTitle,
                                     itemPrice, itemQuantity, itemWeight);
                             operationFlag = storeInventory.addItem(newToy);
-                            if(!operationFlag){
-                                /*
-                                System.out.println("ERROR! Unknown error " +
-                                        "occurred adding Toy.");
-                                        */
-                            } else {
-                                System.out.println("Toy with SKU '"
-                                        + itemSku + "' was successfully added.");
+                            if(operationFlag){
+                                System.out.println("The toy '" +itemTitle +"'" +
+                                        " with SKU #" + itemSku + " " +
+                                        "was successfully added...");
                             }
                             break;
                         default:
@@ -239,9 +227,9 @@ public class Main {
 
                     // Prompt for SKU of item to remove from user.
                     System.out.println();
-                    System.out.println("---------------------");
-                    System.out.println("--  Remove Product --");
-                    System.out.println("---------------------");
+                    System.out.println("----------------------");
+                    System.out.println("--  Remove Product  --");
+                    System.out.println("----------------------");
                     System.out.println();
 
                     System.out.print("Enter SKU: ");
@@ -257,9 +245,9 @@ public class Main {
 
                     // Prompt for SKU of item to display from user.
                     System.out.println();
-                    System.out.println("---------------------");
-                    System.out.println("-- Display Product --");
-                    System.out.println("---------------------");
+                    System.out.println("-----------------------");
+                    System.out.println("--  Display Product  --");
+                    System.out.println("-----------------------");
                     System.out.println();
 
                     System.out.print("Enter SKU: ");
@@ -286,6 +274,34 @@ public class Main {
 
                     // OPTION 6
                     System.out.println("OPTION 6");
+
+                    // Prompt user for SKU, quantity, shipping cost paid.
+                    System.out.println();
+                    System.out.println("----------------------");
+                    System.out.println("--  Process A Sale  --");
+                    System.out.println("----------------------");
+                    System.out.println();
+
+                    System.out.print("Enter SKU of product sold: ");
+                    int givenSku = input.nextInt();
+                    System.out.println();
+                    System.out.print("Enter quantity of product sold: ");
+                    int givenQuantity = input.nextInt();
+                    System.out.println();
+                    System.out.print("Enter shipping cost of product sold: $");
+                    double givenShippingCost = input.nextDouble();
+                    System.out.println();
+
+
+                    operationFlag = storeInventory.processSale(givenSku,
+                            givenQuantity, givenShippingCost);
+
+                    if(operationFlag){
+                        System.out.println();
+                        System.out.println("The sale of " + givenQuantity +
+                                " units with SKU #" + givenSku + " was " +
+                                "successfully processed.");
+                    }
                     break;
 
                 case 7:

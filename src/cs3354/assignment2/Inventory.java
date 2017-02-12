@@ -211,6 +211,97 @@ public class Inventory implements Serializable{
 
     } // End displayInventoryBySku
 
+    /*
+    Method: processesSale
+    Type: boolean
+    Description: Processes the sale of an item in the inventory. User must
+    provide the SKU of the item, quantity of item to sell
+    Param:
+    @param (int) Unique SKU of item to processes a sale on.
+    @param (int) Given quantity of product to sell.
+    @param (double) Shipping cost paid by shipping company.
+    Return:  Returns <CODE>True</CODE> if a sale was successfully processed, and
+    returns <CODE>False</CODE> if the sale failed.
+    */
+    public boolean processSale (int givenSku, int givenQuantity,
+                                double givenShippingCost){
+
+        // Method specific variables
+        double totalPrice;
+        double totalShippingCredit;
+        double totalCommission;
+        double totalProfit;
+
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter =
+                NumberFormat.getCurrencyInstance(locale);
+
+        // Search for product in inventory based on given SKU.
+        Product currentProduct = searchInventory(givenSku);
+
+        if(currentProduct == null){
+            System.out.println("ERROR! The SKU '" + givenSku +
+                    "' could not be found in the inventory. Please select a " +
+                    "different SKU and try again.");
+            return false;
+        } else {
+            if(currentProduct.getQuantity() < givenQuantity){
+
+                // Print error to user to change quantity.
+                System.out.println("ERROR! The SKU '" + givenSku +
+                        "' does not have enough inventory to process sale.");
+                System.out.println("Given quantity was " + givenQuantity +
+                        ". Available quantity is " +
+                        currentProduct.getQuantity() + ".");
+                return false;
+            } else{
+                // Set quantity of item to reflect the new available quantity.
+                // (new quantity = current quantity - given quantity)
+                currentProduct.setQuantity((currentProduct.getQuantity()
+                        - givenQuantity));
+
+                // Calculate the total price of the items sold.
+                totalPrice = currentProduct.totalPrice(givenQuantity);
+
+                // Calculate the total shipping credit of the items sold.
+                totalShippingCredit =
+                        currentProduct.totalShippingCredit(givenQuantity);
+
+                // Calculate the total commission on the items sold.
+                totalCommission = currentProduct.totalCommission(givenQuantity);
+
+                // Calculate the total profit on the items sold.
+                totalProfit = currentProduct.totalProfit(givenQuantity,
+                        givenShippingCost);
+
+                /*
+                // DEBUG
+                System.out.println("DEBUG: TotalPrice: " + totalPrice);
+                // DEBUG
+                System.out.println("DEBUG: TotalShippingCredit: " + totalShippingCredit);
+                // DEBUG
+                System.out.println("DEBUG: TotalCommission: " + totalCommission);
+                // DEBUG
+                System.out.println("DEBUG: TotalProfit: " + totalProfit);
+
+                */
+                // Print out calculations from processing a sale to the user.
+                System.out.printf("%-10s %20s \n", "Total Price:",
+                        currencyFormatter.format(totalPrice));
+
+                System.out.printf("%-10s %10s \n", "Total Shipping Credit:",
+                        currencyFormatter.format(totalShippingCredit));
+
+                System.out.printf("%-10s %14s \n", "Total Commission: ",
+                currencyFormatter.format(totalCommission));
+                // System.out.println("DEBUG: " + totalProfit);
+                System.out.printf("%-10s %22s \n" ,"Profit: ",
+                currencyFormatter.format(totalProfit));
+                return true;
+            }
+        }
+
+    }
     /***************************************************************************
     * PRIVATE MEMBER METHODS
     ***************************************************************************/
